@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Amati perjalanan mangga dari segar hingga membusuk melalui simulasi animasi interaktif."><meta name="theme-color" content="#173f35">
+<title>Mangga Lab — Perjalanan sebuah mangga</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+</head>
+<body>
+<header><a class="brand" href="#"><span class="brand-icon">m.</span>Mangga<span class="light">lab</span></a><span class="header-note">LABORATORIUM VIRTUAL</span><button class="help" id="about">Tentang simulasi <span>ⓘ</span></button></header>
+<main>
+<div class="intro"><div><div class="eyebrow"><span></span> AMATI PERUBAHAN ALAMI</div><h1>Setiap mangga punya<br>perjalanan<span class="serif"> waktunya.</span></h1><p>Dari segar hingga membusuk. Jelajahi perubahan kecil<br class="desktop"> yang terjadi, satu hari demi satu hari.</p></div><div class="intro-note"><span>Eksperimen hari ini</span><strong>Mangifera indica</strong><small>Satu buah. Lima fase kehidupan.</small></div></div>
+<div class="workspace">
+<section class="observation" aria-label="Visual simulasi mangga">
+<div class="scene-head"><span><i></i> RUANG OBSERVASI</span><span id="environmentLabel">SUHU RUANG · 28°C</span></div>
+<div class="scene"><div class="grid"></div><div class="day-display"><small>WAKTU BERLALU</small><strong id="day">00<span>.0</span></strong><span>hari simulasi</span></div>
+<svg class="mango" viewBox="0 0 640 440" role="img" aria-labelledby="mangoTitle"><title id="mangoTitle">Mangga segar berwarna hijau</title><defs>
+<radialGradient id="skin" cx="35%" cy="29%" r="80%"><stop id="color1" offset="0" stop-color="#b3d45f"/><stop id="color2" offset=".48" stop-color="#73a638"/><stop id="color3" offset="1" stop-color="#305d28"/></radialGradient>
+<radialGradient id="shine"><stop stop-color="#f3ffb7" stop-opacity=".65"/><stop offset="1" stop-color="#e8ffad" stop-opacity="0"/></radialGradient>
+<radialGradient id="bruise"><stop stop-color="#221b0d"/><stop offset=".6" stop-color="#42351a"/><stop offset="1" stop-color="#554420" stop-opacity="0"/></radialGradient>
+<radialGradient id="mold"><stop stop-color="#b6ceaf"/><stop offset=".58" stop-color="#739c81"/><stop offset="1" stop-color="#bad0af" stop-opacity="0"/></radialGradient>
+<filter id="shadow"><feGaussianBlur stdDeviation="10"/></filter>
+<filter id="texture"><feTurbulence type="fractalNoise" baseFrequency=".55" numOctaves="3" seed="12"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope=".16"/></feComponentTransfer><feBlend in="SourceGraphic" mode="soft-light"/></filter>
+<clipPath id="fruitClip"><path d="M327 93 C405 77 458 139 453 218 C450 301 367 367 292 365 C201 365 164 310 179 241 C192 179 247 105 327 93Z"/></clipPath>
+</defs>
+<ellipse cx="319" cy="386" rx="130" ry="14" fill="#071f19" opacity=".7" filter="url(#shadow)"/>
+<g id="fruit"><path d="M327 107 Q318 79 335 56" fill="none" stroke="#6d5431" stroke-width="13" stroke-linecap="round"/><path id="leaf" d="M333 76 Q370 23 415 62 Q383 100 333 76Z" fill="#44774a"/><path d="M339 74 L397 61" fill="none" stroke="#8bae66" stroke-width="1.7"/>
+<path d="M327 93 C405 77 458 139 453 218 C450 301 367 367 292 365 C201 365 164 310 179 241 C192 179 247 105 327 93Z" fill="url(#skin)"/>
+<g clip-path="url(#fruitClip)"><ellipse cx="272" cy="170" rx="100" ry="95" fill="url(#shine)"/><g id="speckles"></g><g id="bruises"></g><g id="wrinkles"></g><g id="molds"></g><rect x="165" y="90" width="300" height="290" fill="transparent" filter="url(#texture)" opacity=".45"/></g></g>
+</svg>
+<div class="model-shadow" aria-hidden="true"></div>
+<canvas id="mango3d" tabindex="0" role="img" aria-label="Model mangga 3D interaktif. Geser atau gunakan tombol panah untuk memutar. Tombol tambah dan kurang untuk zoom, Home untuk mengembalikan sudut pandang." aria-describedby="orbitHint"></canvas>
+<div id="anatomyLegend" class="anatomy-legend" aria-label="Bagian mangga pada model belahan"><span><i class="peel-dot"></i>Kulit</span><span><i class="flesh-dot"></i>Daging buah</span><span><i class="seed-dot"></i>Biji</span><small>Belahan memanjang · ilustrasi anatomi</small></div>
+<div class="annotation"><span class="annotation-line"></span><strong id="visualLabel">Kulit hijau & kencang</strong><small id="visualSub">Awal perjalanan</small></div>
+<div class="scene-bottom"><span id="phaseBadge">FASE 01 / 05</span><span>ILUSTRASI INTERAKTIF <span class="spark">✳</span></span></div></div>
+<div class="view-controls"><span id="orbitHint" role="status">Menyiapkan model 3D…</span><div><button id="splitMango" aria-pressed="true">Satukan mangga</button><button id="zoomIn" aria-label="Perbesar mangga">+</button><button id="zoomOut" aria-label="Perkecil mangga">−</button><button id="viewReset" title="Kembalikan sudut pandang" aria-label="Kembalikan sudut pandang">↺</button><button id="autoRotate" aria-pressed="false">Putar otomatis</button></div></div>
+<div class="playback"><button id="play" class="play"><span id="playIcon">▶</span><span id="playText">Mulai simulasi</span></button><button id="reset" class="reset" aria-label="Ulangi simulasi" title="Ulangi simulasi">↺</button><span class="playback-divider"></span><label class="speed">Kecepatan <select id="speed" aria-label="Kecepatan animasi"><option value="1">1×</option><option value="2">2×</option><option value="4">4×</option></select></label><span class="duration">0 — 14 hari</span></div>
+<div class="timeline"><label for="time">Geser untuk menjelajahi waktu <output id="timeValue">Hari 0,0</output></label><input id="time" type="range" min="0" max="14" step="0.01" value="0"><div class="ticks"><span>Hari 0</span><span>Hari 3</span><span>Hari 7</span><span>Hari 10</span><span>Hari 14</span></div></div>
+</section>
+<aside><section class="settings"><div class="section-label">ATUR EKSPERIMEN <span>☷</span></div><h2>Lingkungan penyimpanan</h2><p>Kondisi berbeda, perjalanan berbeda.</p><div class="conditions" role="group" aria-label="Kondisi penyimpanan"><button data-env="room" class="selected" aria-pressed="true"><span class="condition-icon">☀</span><span><strong>Suhu ruang</strong><small>28°C · kondisi normal</small></span><i></i></button><button data-env="cold" aria-pressed="false"><span class="condition-icon">❄</span><span><strong>Tempat sejuk</strong><small>15°C · proses lebih lambat</small></span><i></i></button><button data-env="warm" aria-pressed="false"><span class="condition-icon">♨</span><span><strong>Tempat hangat</strong><small>35°C · proses lebih cepat</small></span><i></i></button></div><div class="setting-note">ⓘ &nbsp; Mengubah kondisi akan memperbarui fase pada waktu yang sama.</div></section>
+<section class="phase-info"><div class="section-label">YANG SEDANG TERJADI <span id="phaseEmoji">◉</span></div><div class="phase-title"><h2 id="phaseName">Segar</h2><span id="phasePeriod">Fase awal</span></div><p id="phaseDesc">Mangga masih hijau dengan permukaan yang kencang. Proses pematangan mulai berlangsung di dalam buah.</p><div class="metric"><span>Tekstur</span><strong id="textureText">Keras & padat</strong></div><div class="metric"><span>Aroma</span><strong id="aromaText">Segar, ringan</strong></div><div class="freshness"><label>Kesegaran visual <strong id="freshValue">100%</strong></label><div><span id="freshBar"></span></div></div></section></aside></div>
+<section class="phase-guide"><div class="guide-title"><h2>Lima fase, satu perjalanan.</h2><span>Klik fase untuk mengamati</span></div><div class="phase-cards" id="phaseCards"></div></section>
+<footer><span class="footer-brand">m. <strong>Mangga Lab</strong></span><p>Simulasi edukatif. Waktu dan perubahan bersifat ilustratif, bukan prediksi masa simpan.</p><span>Dibuat untuk rasa ingin tahu.</span></footer>
+</main><dialog id="aboutDialog"><button id="closeAbout" aria-label="Tutup">×</button><div class="eyebrow">TENTANG EKSPERIMEN</div><h2>Mengamati perubahan alami.</h2><p>Mangga Lab adalah ilustrasi interaktif lima fase: segar, matang, terlalu matang, mulai membusuk, dan membusuk.</p><p>Warna, bercak, jamur, dan kerutan berubah mengikuti waktu simulasi. Kondisi penyimpanan menggunakan pengali ilustratif untuk membandingkan laju perubahan.</p><p>Angka hari dan persentase kesegaran bukan hasil pengukuran. Varietas, kematangan awal, kelembapan, dan penanganan dapat menghasilkan perubahan nyata yang berbeda.</p></dialog>
+<script src="mango3d.js"></script><script src="app.js"></script></body></html>
